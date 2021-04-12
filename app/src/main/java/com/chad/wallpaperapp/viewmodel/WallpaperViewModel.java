@@ -6,8 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.chad.wallpaperapp.model.Wallpaper;
+import com.chad.wallpaperapp.model.WallpaperList;
 import com.chad.wallpaperapp.repository.WallpaperRepository;
+
+import java.util.List;
 
 public class WallpaperViewModel extends AndroidViewModel {
 
@@ -18,7 +20,7 @@ public class WallpaperViewModel extends AndroidViewModel {
         wallpaperRepository = new WallpaperRepository(application);
     }
 
-    public LiveData<Wallpaper> getNewPhotos(String apiKey) {
+    public LiveData<List<WallpaperList>> getNewPhotos(String apiKey) {
         return wallpaperRepository.getNewPhotos(apiKey);
     }
 

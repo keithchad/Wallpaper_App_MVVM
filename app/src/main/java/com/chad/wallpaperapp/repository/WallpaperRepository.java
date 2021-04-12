@@ -1,7 +1,6 @@
 package com.chad.wallpaperapp.repository;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -10,7 +9,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.chad.wallpaperapp.api.ApiClient;
 import com.chad.wallpaperapp.api.ApiService;
-import com.chad.wallpaperapp.model.Wallpaper;
+import com.chad.wallpaperapp.model.WallpaperList;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,17 +27,17 @@ public class WallpaperRepository {
         this.context = context;
     }
 
-    public LiveData<Wallpaper> getNewPhotos(String apiKey) {
+    public LiveData<List<WallpaperList>> getNewPhotos(String apiKey) {
 
-        MutableLiveData<Wallpaper> data = new MutableLiveData<>();
-        apiService.getNewPhotos(apiKey).enqueue(new Callback<Wallpaper>() {
+        MutableLiveData<List<WallpaperList>> data = new MutableLiveData<>();
+        apiService.getNewPhotos(apiKey).enqueue(new Callback<List<WallpaperList>>() {
             @Override
-            public void onResponse(@NonNull Call<Wallpaper> call, @NonNull Response<Wallpaper> response) {
+            public void onResponse(@NonNull Call<List<WallpaperList>> call, @NonNull Response<List<WallpaperList>> response) {
                 data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(@NonNull Call<Wallpaper> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<WallpaperList>> call, @NonNull Throwable t) {
                 Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show();
             }
         });

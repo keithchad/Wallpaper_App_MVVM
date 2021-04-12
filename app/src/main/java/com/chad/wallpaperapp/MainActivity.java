@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
         swipeRefreshLayout.setRefreshing(true);
         wallpaperViewModel.getNewPhotos(Constants.API_KEY).observe(this, wallpaper -> {
             if (wallpaper != null) {
-                if (wallpaper.getUser().getProfileImage().getLarge() != null) {
+                if (wallpaper.get(0).getUser().getProfileImage().getLarge() != null) {
                     swipeRefreshLayout.setRefreshing(false);
-                    Toast.makeText(this, wallpaper.getUser().getProfileImage().getLarge(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, wallpaper.get(0).getUser().getProfileImage().getLarge(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
