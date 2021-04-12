@@ -42,7 +42,7 @@ public class WallpaperAdapter extends RecyclerView.Adapter<WallpaperAdapter.View
         WallpaperList wallpaper = list.get(position);
 
         String profileImage = wallpaper.getUser().getProfileImage().getLarge();
-        String wallpaperImage = wallpaper.getUrls().getFull();
+        String wallpaperImage = wallpaper.getUrls().getRegular();
         Integer likes = wallpaper.getLikes();
 
         holder.textLikes.setText(likes.toString());
