@@ -10,7 +10,7 @@ public class ApiClient {
 
     private Retrofit retrofit;
 
-    private Retrofit getRetrofit() {
+    public Retrofit getRetrofit() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(Constants.BASE_URL)
