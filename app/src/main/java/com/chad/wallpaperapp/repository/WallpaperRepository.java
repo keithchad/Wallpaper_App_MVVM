@@ -43,4 +43,21 @@ public class WallpaperRepository {
         });
         return data;
     }
+
+    public LiveData<WallpaperList> getRandomPhotos(String apiKey) {
+
+        MutableLiveData<WallpaperList> data = new MutableLiveData<>();
+        apiService.getRandomPhoto(apiKey).enqueue(new Callback<WallpaperList>() {
+            @Override
+            public void onResponse(@NonNull Call<WallpaperList> call,@NonNull Response<WallpaperList> response) {
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<WallpaperList> call,@NonNull Throwable t) {
+                Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        return data;
+    }
 }

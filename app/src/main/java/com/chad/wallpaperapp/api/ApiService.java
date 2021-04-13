@@ -21,7 +21,7 @@ public interface ApiService {
     );
 
     @GET("photos/random")
-    public Call<List<WallpaperList>> getRandomPhoto(
+    public Call<WallpaperList> getRandomPhoto(
             @Query("client_id")
             String API_KEY
     );

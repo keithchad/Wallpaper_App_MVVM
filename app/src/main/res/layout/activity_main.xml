@@ -6,29 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:orientation="vertical"
         android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="13dp"
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:fontFamily="@font/ubuntu_bold"
             android:text="@string/wallpapers"
             android:textAlignment="center"
             android:textColor="@color/white"
+            android:layout_marginEnd="40dp"
             android:textSize="25sp" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/imageLaunch"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_launch"
+            android:contentDescription="@string/app_name"
+            app:tint="@color/white"
+            android:gravity="center"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:background="?android:selectableItemBackground"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:focusable="true" />
 
+    </RelativeLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"

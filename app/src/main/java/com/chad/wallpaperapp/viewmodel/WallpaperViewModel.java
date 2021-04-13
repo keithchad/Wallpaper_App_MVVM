@@ -24,4 +24,8 @@ public class WallpaperViewModel extends AndroidViewModel {
         return wallpaperRepository.getNewPhotos(page, perPage, apiKey);
     }
 
+    public LiveData<WallpaperList> getRandomPhotos(String apiKey) {
+        return wallpaperRepository.getRandomPhotos(apiKey);
+    }
+
 }

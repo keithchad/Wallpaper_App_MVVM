@@ -1,6 +1,10 @@
 package com.chad.wallpaperapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,12 +42,18 @@ public class MainActivity extends AppCompatActivity {
         wallpaperViewModel = new ViewModelProvider(this).get(WallpaperViewModel.class);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        ImageView imageLaunch = findViewById(R.id.imageLaunch);
         list = new ArrayList<>();
         wallpaperAdapter = new WallpaperAdapter(this, list);
 
         recyclerView.setAdapter(wallpaperAdapter);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
+
+        imageLaunch.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SingleWallpaperActivity.class);
+            startActivity(intent);
+        });
 
         swipeRefreshLayout.setOnRefreshListener(this::getData);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
