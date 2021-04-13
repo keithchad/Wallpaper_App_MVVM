@@ -20,8 +20,8 @@ public class WallpaperViewModel extends AndroidViewModel {
         wallpaperRepository = new WallpaperRepository(application);
     }
 
-    public LiveData<List<WallpaperList>> getNewPhotos(String apiKey) {
-        return wallpaperRepository.getNewPhotos(apiKey);
+    public LiveData<List<WallpaperList>> getNewPhotos(Integer page, Integer perPage, String apiKey) {
+        return wallpaperRepository.getNewPhotos(page, perPage, apiKey);
     }
 
 }

@@ -12,6 +12,10 @@ public interface ApiService {
 
     @GET("photos")
     public Call<List<WallpaperList>> getNewPhotos(
+            @Query("page")
+            Integer page,
+            @Query("per_page")
+            Integer perPage,
             @Query("client_id")
             String API_KEY
     );

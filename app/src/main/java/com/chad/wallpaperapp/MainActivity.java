@@ -3,6 +3,7 @@ package com.chad.wallpaperapp;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     private WallpaperAdapter wallpaperAdapter;
     private List<WallpaperList> list;
+    private Integer currentPage = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +46,28 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         swipeRefreshLayout.setOnRefreshListener(this::getData);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if(!recyclerView.canScrollVertically(1)) {
+                    currentPage += 1;
+                    getData();
+                }
+            }
+        });
 
         getData();
     }
 
     private void getData() {
+
         swipeRefreshLayout.setRefreshing(true);
-        wallpaperViewModel.getNewPhotos(Constants.API_KEY).observe(this, wallpaper -> {
+        wallpaperViewModel.getNewPhotos(currentPage, 20, Constants.API_KEY).observe(this, wallpaper -> {
             if (wallpaper != null) {
+                int oldCount = wallpaper.size();
                 swipeRefreshLayout.setRefreshing(false);
-                list.clear();
                 list.addAll(wallpaper);
-                wallpaperAdapter.notifyDataSetChanged();
+                wallpaperAdapter.notifyItemRangeInserted(oldCount, wallpaper.size());
             }
         });
 

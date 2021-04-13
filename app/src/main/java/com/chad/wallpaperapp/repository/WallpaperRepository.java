@@ -27,10 +27,10 @@ public class WallpaperRepository {
         this.context = context;
     }
 
-    public LiveData<List<WallpaperList>> getNewPhotos(String apiKey) {
+    public LiveData<List<WallpaperList>> getNewPhotos(Integer page, Integer perPage, String apiKey) {
 
         MutableLiveData<List<WallpaperList>> data = new MutableLiveData<>();
-        apiService.getNewPhotos(apiKey).enqueue(new Callback<List<WallpaperList>>() {
+        apiService.getNewPhotos(page, perPage, apiKey).enqueue(new Callback<List<WallpaperList>>() {
             @Override
             public void onResponse(@NonNull Call<List<WallpaperList>> call, @NonNull Response<List<WallpaperList>> response) {
                 data.setValue(response.body());
